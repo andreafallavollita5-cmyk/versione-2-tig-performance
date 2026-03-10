@@ -404,7 +404,7 @@
 
     .solutions__fx {
       position: absolute;
-      inset: 140px 0 0;
+      inset: 96px 0 0;
       width: 100%;
       height: 520px;
       pointer-events: none;
@@ -1333,7 +1333,8 @@
       }
 
       .episodes {
-        padding-top: 36px;
+        padding: 36px 16px 72px;
+        overflow: hidden;
       }
 
       .episodes__title {
@@ -1352,7 +1353,19 @@
       }
 
       .episodes__header {
+        grid-template-columns: 1fr;
         gap: 14px;
+        align-items: start;
+        margin-bottom: 18px;
+      }
+
+      .episodes__header-copy {
+        max-width: none;
+        min-width: 0;
+      }
+
+      .episodes__actions {
+        justify-self: start;
       }
 
       .episodes__nav {
@@ -1385,11 +1398,12 @@
 
       .episodes__track {
         gap: 14px;
-        padding: 12px 20px;
+        padding: 12px 14px;
+        scroll-padding-left: 14px;
       }
 
       .episode-card {
-        flex-basis: 84vw;
+        flex-basis: min(82vw, 320px);
       }
 
       .episode-card__play {
@@ -1735,7 +1749,6 @@
       const maxParticles = 120;
       let animationFrameId = null;
       const ctaButton = document.querySelector(".solutions__button");
-      const ctaButtonIcon = document.querySelector(".solutions__button-icon");
       const solutionCards = document.querySelectorAll("[data-scroll-form]");
       const contactForm = document.getElementById("contact-form");
       const carousel = document.getElementById("episodes-carousel");
@@ -1751,23 +1764,16 @@
       };
 
       const spawnParticle = function () {
-        if (!ctaButton) {
-          return;
-        }
-
-        const source = ctaButtonIcon || ctaButton;
-        const canvasRect = canvas.getBoundingClientRect();
-        const sourceRect = source.getBoundingClientRect();
-        const originX = sourceRect.left - canvasRect.left + sourceRect.width / 2;
-        const originY = sourceRect.top - canvasRect.top + sourceRect.height / 2;
+        const originX = canvas.clientWidth * 0.5;
+        const originY = 150;
 
         particles.push({
-          x: originX + (Math.random() * 36 - 18),
-          y: originY + (Math.random() * 20 - 10),
+          x: originX + (Math.random() * 220 - 110),
+          y: originY + (Math.random() * 28 - 14),
           size: Math.random() * 5 + 1.5,
           alpha: Math.random() * 0.45 + 0.22,
-          vx: Math.random() * 2.8 - 1.4,
-          vy: -(Math.random() * 2.4 + 0.8),
+          vx: Math.random() * 3.4 - 1.7,
+          vy: Math.random() * 1.6 + 0.35,
           life: Math.random() * 55 + 45,
           maxLife: 100
         });
