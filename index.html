@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hero 2 | Test Hero Section</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap");
+
+    :root {
+      --navy: #001540;
+      --white: #ffffff;
+      --white-soft: #f2f2f2;
+      --black: #000000;
+      --green: #60e53b;
+      --green-hover: #57d934;
+      --green-soft: rgba(96, 229, 59, 0.18);
+      --panel-stroke: rgba(255, 255, 255, 0.12);
+      --content-width: 1280px;
+      --section-padding: 48px;
+      --font-main: "Geist", "Poppins", "Segoe UI", Arial, Helvetica, sans-serif;
+      --font-display: "Space Grotesk", "Poppins", "Segoe UI", Arial, Helvetica, sans-serif;
+      --font-heading: "Raleway", "Poppins", "Segoe UI", Arial, Helvetica, sans-serif;
+      --font-ui: "Poppins", "Segoe UI", Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-main);
+      background:
+        radial-gradient(circle at top, rgba(96, 229, 59, 0.08), transparent 26%),
+        var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(100%, var(--content-width));
+      margin: 0 auto;
+      min-width: 0;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(0, 8, 28, 0.82) 0%, rgba(0, 14, 42, 0.58) 38%, rgba(0, 12, 32, 0.28) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.48) 100%);
+      z-index: 1;
+    }
+
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 492px;
+      gap: 42px;
+      align-items: start;
+      padding: 28px 42px 70px;
+      min-width: 0;
+    }
+
+    .hero__copy {
+      position: relative;
+      width: 100%;
+      max-width: 620px;
+      padding-top: 124px;
+      min-width: 0;
+    }
+
+    .hero__copy::before {
+      content: "";
+      position: absolute;
+      inset: -22px -24px -18px -24px;
+      background:
+        radial-gradient(circle at top left, rgba(96, 229, 59, 0.14), transparent 42%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.1));
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 28px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero__title {
+      margin: 0 0 18px;
+      max-width: 540px;
+      font-size: clamp(3.2rem, 6vw, 5.6rem);
+      line-height: 0.94;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      font-family: var(--font-display);
+      color: var(--white-soft);
+      text-shadow: 0 10px 28px rgba(0, 0, 0, 0.42);
+      text-wrap: balance;
+    }
+
+    .hero__title-break {
+      display: none;
+    }
+
+    .hero__subtitle {
+      margin: 0 0 32px;
+      max-width: 540px;
+      font-size: clamp(1rem, 1.65vw, 1.45rem);
+      line-height: 1.35;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--white-soft);
+      font-family: var(--font-heading);
+      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
+      text-wrap: balance;
+    }
+
+    .powered {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 14px 18px;
+      border: 1px solid var(--panel-stroke);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(10px);
+    }
+
+    .powered__label {
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 600;
+      font-family: var(--font-heading);
+    }
+
+    .brand-logo {
+      width: 320px;
+      height: auto;
+    }
+
+    .hero__logo {
+      position: absolute;
+      top: -18px;
+      left: 0;
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border: 1px solid var(--panel-stroke);
+      border-radius: 16px;
+      background: rgba(5, 17, 43, 0.56);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero__logo .brand-logo {
+      width: 168px;
+    }
+
+    .hero__preview {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      width: 100%;
+      max-width: 560px;
+      min-width: 0;
+    }
+
+    .hero__preview-card {
+      min-height: 124px;
+      padding: 16px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(10px);
+      min-width: 0;
+    }
+
+    .hero__preview-icon {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0;
+      border-radius: 10px;
+      background: rgba(96, 229, 59, 0.16);
+      color: var(--green);
+      flex: 0 0 auto;
+    }
+
+    .hero__preview-icon svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+    }
+
+    .hero__preview-title {
+      margin: 0;
+      flex: 1 1 auto;
+      max-width: none;
+      font-size: 1.22rem;
+      line-height: 0.98;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      font-family: var(--font-heading);
+      color: var(--white-soft);
+      text-wrap: balance;
+      align-self: center;
+    }
+
+    .hero__preview-text {
+      margin: 0;
+      font-size: 0.75rem;
+      line-height: 1.34;
+      color: rgba(242, 242, 242, 0.72);
+      font-family: var(--font-heading);
+    }
+
+    .hero__scroll-cue {
+      display: none;
+      align-items: center;
+      margin-top: 2px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .hero__scroll-arrow {
+      width: 72px;
+      height: 56px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--green);
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero__scroll-arrow svg {
+      width: 30px;
+      height: 30px;
+      stroke: currentColor;
+    }
+
+    .lead-card {
+      margin-top: 82px;
+      width: 100%;
+      padding: 30px 38px 40px;
+      color: var(--black);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 249, 252, 0.94));
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.26);
+      outline: 1px solid rgba(255, 255, 255, 0.36);
+      outline-offset: -2px;
+      min-width: 0;
+    }
+
+    .lead-card__title {
+      margin: 0 0 34px;
+      text-align: center;
+      font-size: 2.1rem;
+      line-height: 1.05;
+      font-weight: 600;
+      letter-spacing: -0.05em;
+      font-family: var(--font-heading);
+    }
+
+    .lead-form {
+      display: grid;
+      gap: 28px;
+    }
+
+    .lead-form__field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .lead-form__label {
+      font-size: 0.95rem;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.66);
+      font-family: var(--font-ui);
+    }
+
+    .lead-form__input {
+      width: 100%;
+      min-width: 0;
+      padding: 0 0 8px;
+      border: 0;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.72);
+      background: transparent;
+      color: var(--black);
+      font: inherit;
+      outline: none;
+    }
+
+    .lead-form__consents {
+      display: grid;
+      gap: 14px;
+      margin-top: -4px;
+    }
+
+    .lead-form__consent {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 12px;
+      align-items: start;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: rgba(0, 0, 0, 0.66);
+      font-family: var(--font-ui);
+    }
+
+    .lead-form__checkbox {
+      margin: 3px 0 0;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--green);
+    }
+
+    .lead-form__submit {
+      min-height: 56px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #6bf047, var(--green));
+      color: var(--white);
+      font: inherit;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 14px 24px rgba(96, 229, 59, 0.24);
+    }
+
+    .lead-form__submit:hover {
+      background: var(--green-hover);
+    }
+
+    .solutions {
+      position: relative;
+      padding: 110px 24px 130px;
+      background:
+        linear-gradient(180deg, rgba(0, 10, 33, 0.96) 0%, rgba(0, 21, 64, 1) 100%);
+      overflow: hidden;
+    }
+
+    .solutions::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(circle at center, black, transparent 78%);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .solutions__inner {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-heading);
+    }
+
+    .solutions__fx {
+      position: absolute;
+      inset: 180px 0 0;
+      width: 100%;
+      height: 360px;
+      pointer-events: none;
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    .solutions__header {
+      margin: 0 auto 74px;
+      max-width: 760px;
+      text-align: center;
+    }
+
+    .solutions__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: rgba(242, 242, 242, 0.72);
+    }
+
+    .solutions__eyebrow::before,
+    .solutions__eyebrow::after {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: rgba(96, 229, 59, 0.7);
+    }
+
+    .solutions__title {
+      margin: 0 0 18px;
+      font-family: var(--font-heading);
+      font-size: clamp(2.7rem, 6vw, 5.2rem);
+      line-height: 0.94;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      color: var(--white-soft);
+      text-wrap: balance;
+    }
+
+    .solutions__intro {
+      margin: 0 auto;
+      max-width: 580px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(242, 242, 242, 0.74);
+      text-wrap: balance;
+    }
+
+    .solutions__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      align-items: start;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .solution-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+      padding: 24px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 247, 250, 0.92));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--black);
+      overflow: hidden;
+      box-shadow: 0 24px 44px rgba(0, 0, 0, 0.2);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      min-width: 0;
+    }
+
+    .solution-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+      background-size: 20px 20px;
+      mask-image: linear-gradient(135deg, white, transparent 72%);
+      pointer-events: none;
+    }
+
+    .solution-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(96, 229, 59, 0.58);
+      box-shadow: 0 26px 48px rgba(96, 229, 59, 0.16);
+    }
+
+    .solution-card--offset {
+      margin-top: 34px;
+    }
+
+    .solution-card--offset-2 {
+      margin-top: 68px;
+    }
+
+    .solution-card__icon {
+      position: relative;
+      z-index: 1;
+      width: 58px;
+      height: 58px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      background: #eef2f6;
+      color: #081f52;
+      transition: transform 0.28s ease, background 0.28s ease, color 0.28s ease;
+    }
+
+    .solution-card:hover .solution-card__icon {
+      background: var(--green);
+      color: var(--black);
+      transform: rotate(-6deg) scale(1.06);
+    }
+
+    .solution-card__icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .solution-card__body {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      padding-top: 56px;
+    }
+
+    .solution-card__title {
+      margin: 0 0 8px;
+      font-size: 1.55rem;
+      line-height: 1.08;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      font-family: var(--font-heading);
+    }
+
+    .solution-card__text {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.42;
+      color: rgba(0, 0, 0, 0.58);
+      font-weight: 500;
+    }
+
+    .solutions__cta {
+      margin-top: 90px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .solutions__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px 16px 30px;
+      border: 0;
+      border-radius: 999px;
+      background: #020816;
+      color: var(--white);
+      font: inherit;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.24s ease, box-shadow 0.24s ease;
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.24);
+    }
+
+    .solutions__button:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 0 30px rgba(96, 229, 59, 0.24);
+    }
+
+    .solutions__button-icon {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--black);
+      flex: 0 0 auto;
+    }
+
+    .episodes {
+      background: var(--navy);
+      padding: 52px var(--section-padding) 84px;
+    }
+
+    .episodes__header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .episodes__header-copy {
+      max-width: 760px;
+    }
+
+    .episodes__title {
+      margin: 0 0 18px;
+      font-size: clamp(2.2rem, 3vw, 3.1rem);
+      line-height: 0.96;
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      font-family: var(--font-heading);
+      color: var(--white-soft);
+    }
+
+    .episodes__intro {
+      max-width: 600px;
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 300;
+      color: var(--white-soft);
+      font-family: var(--font-heading);
+    }
+
+    .episodes__channel {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 18px;
+      font-size: clamp(1.35rem, 1.9vw, 2rem);
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      font-family: var(--font-heading);
+    }
+
+    .youtube-badge {
+      position: relative;
+      width: 68px;
+      height: 44px;
+      border-radius: 10px;
+      background: #ff1208;
+      flex: 0 0 auto;
+    }
+
+    .youtube-badge::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-40%, -50%);
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 16px solid #ffffff;
+    }
+
+    .episodes__actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      justify-self: end;
+    }
+
+    .episodes__nav {
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--white);
+      font: inherit;
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .episodes__nav:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .episodes__film {
+      position: relative;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.96), rgba(7, 14, 33, 0.96));
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 42px 0;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    .episodes__film-edge {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16px, 1fr));
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .episodes__film-edge--top {
+      top: 10px;
+    }
+
+    .episodes__film-edge--bottom {
+      bottom: 10px;
+    }
+
+    .episodes__film-hole {
+      height: 18px;
+      border-radius: 3px;
+      background: var(--navy);
+      opacity: 0.92;
+    }
+
+    .episodes__track {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding: 20px var(--section-padding);
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      scroll-padding-left: var(--section-padding);
+    }
+
+    .episodes__track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .episode-card {
+      flex: 0 0 clamp(280px, 31vw, 398px);
+      min-width: 0;
+      scroll-snap-align: start;
+    }
+
+    .episode-card__link {
+      display: grid;
+      gap: 12px;
+      color: inherit;
+      padding: 8px;
+      border-radius: 18px;
+      transition: background 0.24s ease;
+    }
+
+    .episode-card__code {
+      font-size: 0.72rem;
+      line-height: 1;
+      font-weight: 500;
+      font-family: Consolas, "Courier New", monospace;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #ff9d00;
+      opacity: 0.88;
+    }
+
+    .episode-card__media {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      background: #111111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 16px 28px rgba(0, 0, 0, 0.34);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .episode-card__cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.84;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .episode-card__overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.3));
+      transition: background 0.28s ease;
+    }
+
+    .episode-card__play {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 0, 0, 0.9);
+      position: relative;
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.28);
+      transform: scale(0.82);
+      transition: transform 0.28s ease, background 0.28s ease;
+    }
+
+    .episode-card__play::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-38%, -50%);
+      width: 0;
+      height: 0;
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-left: 15px solid #ffffff;
+    }
+
+    .episode-card__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.78rem;
+      line-height: 1.2;
+      font-family: Consolas, "Courier New", monospace;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #ff9d00;
+    }
+
+    .episode-card__title {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.38;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.84);
+      font-family: var(--font-heading);
+    }
+
+    .episode-card__link:hover,
+    .episode-card__link:focus-visible {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .episode-card__link:hover .episode-card__media,
+    .episode-card__link:focus-visible .episode-card__media {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 38px rgba(0, 0, 0, 0.38);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .episode-card__link:hover .episode-card__cover,
+    .episode-card__link:focus-visible .episode-card__cover {
+      transform: scale(1.04);
+      opacity: 1;
+    }
+
+    .episode-card__link:hover .episode-card__play,
+    .episode-card__link:focus-visible .episode-card__play {
+      transform: scale(1);
+      background: #ff0000;
+    }
+
+    .footer {
+      padding: 0 var(--section-padding) 84px;
+      background: var(--navy);
+    }
+
+    .footer__brand {
+      display: block;
+      margin-bottom: 34px;
+    }
+
+    .footer__brand .brand-logo {
+      width: 220px;
+    }
+
+    .footer__headline {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 3.4vw, 3rem);
+      line-height: 1.02;
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      font-family: var(--font-heading);
+    }
+
+    .footer__subheadline {
+      margin: 0 0 50px;
+      font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+      line-height: 1.15;
+      font-weight: 400;
+      letter-spacing: -0.05em;
+      color: var(--white-soft);
+      font-family: var(--font-heading);
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1.1fr 1fr;
+      gap: 48px;
+      max-width: 920px;
+    }
+
+    .footer__group {
+      display: grid;
+      gap: 4px;
+      align-content: start;
+    }
+
+    .footer__link {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .footer__text,
+    .footer__nav a,
+    .footer__copyright {
+      font-size: 0.95rem;
+      line-height: 1.45;
+      font-weight: 400;
+      color: var(--white);
+      font-family: var(--font-heading);
+    }
+
+    .footer__nav {
+      display: grid;
+      gap: 2px;
+    }
+
+    .footer__copyright {
+      margin-top: 46px;
+      max-width: 180px;
+    }
+
+    .footer__policies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      margin-top: 18px;
+    }
+
+    @media (min-width: 1025px) {
+      .solutions__header {
+        max-width: none;
+        width: 100%;
+      }
+
+      .solutions__title {
+        max-width: none;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero__inner {
+        grid-template-columns: 1fr 360px;
+        gap: 24px;
+        padding: 22px 22px 34px;
+      }
+
+      .hero__copy {
+        max-width: 420px;
+        padding-top: 122px;
+      }
+
+      .hero__logo {
+        top: -6px;
+      }
+
+      .hero__logo .brand-logo {
+        width: 138px;
+      }
+
+      .hero__preview {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+      }
+
+      .hero__preview-card {
+        min-height: auto;
+      }
+
+      .lead-card {
+        margin-top: 20px;
+        padding: 18px 20px 20px;
+      }
+
+      .solutions {
+        padding: 88px 22px 104px;
+      }
+
+      .solutions__fx {
+        inset: 170px 0 0;
+        height: 320px;
+      }
+
+      .solutions__grid {
+        gap: 20px;
+      }
+
+      .solution-card {
+        min-height: 290px;
+        padding: 22px;
+      }
+
+      .solution-card__title {
+        font-size: 1.3rem;
+      }
+
+      .episodes {
+        padding-top: 34px;
+        padding-bottom: 54px;
+      }
+
+      .episodes__header {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+
+      .episodes__actions {
+        justify-self: start;
+      }
+
+      .episodes__title {
+        margin-bottom: 14px;
+        font-size: 2rem;
+      }
+
+      .episodes__intro {
+        font-size: 0.92rem;
+      }
+
+      .episodes__channel {
+        gap: 14px;
+        margin-bottom: 14px;
+        font-size: 1.35rem;
+      }
+
+      .youtube-badge {
+        width: 36px;
+        height: 24px;
+        border-radius: 6px;
+      }
+
+      .youtube-badge::before {
+        border-top-width: 6px;
+        border-bottom-width: 6px;
+        border-left-width: 10px;
+      }
+
+      .episodes__nav {
+        width: 40px;
+        height: 40px;
+      }
+
+      .episodes__film {
+        padding: 28px 0;
+      }
+
+      .episodes__film-edge {
+        gap: 8px;
+      }
+
+      .episodes__film-hole {
+        height: 12px;
+      }
+
+      .episodes__track {
+        gap: 18px;
+        padding: 16px 24px;
+      }
+
+      .episode-card {
+        flex-basis: min(78vw, 340px);
+      }
+
+      .footer {
+        padding-bottom: 28px;
+      }
+
+      .footer__brand {
+        margin-bottom: 24px;
+      }
+
+      .footer__headline {
+        margin-bottom: 12px;
+        font-size: 1.15rem;
+      }
+
+      .footer__subheadline {
+        margin-bottom: 24px;
+        font-size: 0.92rem;
+      }
+
+      .footer__grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      .hero {
+        min-height: auto;
+        background: linear-gradient(180deg, rgba(0, 11, 34, 0.98) 0%, rgba(0, 18, 56, 1) 100%);
+      }
+
+      .hero::before,
+      .hero__video {
+        left: 0;
+        right: 0;
+        top: clamp(250px, 64vw, 340px);
+        bottom: auto;
+        height: clamp(170px, 34vw, 230px);
+        border-radius: 0;
+      }
+
+      .hero::before {
+        background:
+          linear-gradient(180deg, rgba(0, 8, 28, 0.1) 0%, rgba(0, 10, 26, 0.34) 100%),
+          linear-gradient(90deg, rgba(0, 8, 28, 0.24) 0%, rgba(0, 14, 42, 0.1) 100%);
+      }
+
+      .hero__inner {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 8px 20px 30px;
+        width: 100%;
+      }
+
+      .hero__copy {
+        max-width: none;
+        min-height: clamp(500px, 120vw, 640px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+        gap: 18px;
+        padding: 76px 14px 0;
+        width: 100%;
+      }
+
+      .hero__subtitle {
+        max-width: 100%;
+        padding: 0;
+        font-size: 0.82rem;
+        line-height: 1.14;
+      }
+
+      .hero__title {
+        width: 100%;
+        padding: 0 12px;
+        font-size: clamp(2.7rem, 12vw, 4rem);
+        line-height: 0.92;
+      }
+
+      .hero__title-break {
+        display: block;
+      }
+
+      .hero__logo {
+        top: 8px;
+        left: 0;
+        transform: none;
+        padding: 8px 12px;
+        border-radius: 14px;
+      }
+
+      .hero__logo .brand-logo {
+        width: 114px;
+      }
+
+      .hero__preview {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .hero__preview-card {
+        min-height: auto;
+        padding: 12px 14px;
+        border-radius: 18px;
+      }
+
+      .hero__preview-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 8px;
+      }
+
+      .hero__preview-icon svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      .hero__preview-title {
+        font-size: 1.08rem;
+        line-height: 0.98;
+      }
+
+      .hero__preview-text {
+        font-size: 0.72rem;
+        line-height: 1.28;
+      }
+
+      .hero__scroll-cue {
+        display: inline-flex;
+      }
+
+      .lead-card {
+        width: 100%;
+        margin-top: 0;
+        padding: 16px 16px 18px;
+        border-radius: 22px;
+      }
+
+      .solutions {
+        padding: 74px 18px 88px;
+      }
+
+      .solutions__fx {
+        inset: 210px 0 0;
+        height: 260px;
+        opacity: 0.72;
+      }
+
+      .solutions__header {
+        margin-bottom: 38px;
+      }
+
+      .solutions__eyebrow {
+        margin-bottom: 14px;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+      }
+
+      .solutions__eyebrow::before,
+      .solutions__eyebrow::after {
+        width: 24px;
+      }
+
+      .solutions__title {
+        margin-bottom: 14px;
+        font-size: 2.2rem;
+      }
+
+      .solutions__intro {
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+
+      .solutions__grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .solution-card,
+      .solution-card--offset,
+      .solution-card--offset-2 {
+        min-height: 240px;
+        margin-top: 0;
+      }
+
+      .solution-card {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .solution-card__icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 16px;
+      }
+
+      .solution-card__icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .solution-card__body {
+        padding-top: 44px;
+      }
+
+      .solution-card__title {
+        font-size: 1.22rem;
+      }
+
+      .solution-card__text {
+        font-size: 0.82rem;
+      }
+
+      .solutions__cta {
+        margin-top: 42px;
+      }
+
+      .solutions__button {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 16px 15px 22px;
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+      }
+
+      .episodes {
+        padding-top: 36px;
+      }
+
+      .episodes__title {
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+      }
+
+      .episodes__intro {
+        font-size: 0.72rem;
+        line-height: 1.42;
+      }
+
+      .episodes__channel {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+      }
+
+      .episodes__header {
+        gap: 14px;
+      }
+
+      .episodes__nav {
+        width: 36px;
+        height: 36px;
+        font-size: 0.92rem;
+      }
+
+      .episodes__film {
+        padding: 20px 0;
+      }
+
+      .episodes__film-edge {
+        left: 6px;
+        right: 6px;
+        gap: 6px;
+      }
+
+      .episodes__film-edge--top {
+        top: 6px;
+      }
+
+      .episodes__film-edge--bottom {
+        bottom: 6px;
+      }
+
+      .episodes__film-hole {
+        height: 9px;
+      }
+
+      .episodes__track {
+        gap: 14px;
+        padding: 12px 20px;
+      }
+
+      .episode-card {
+        flex-basis: 84vw;
+      }
+
+      .episode-card__play {
+        width: 46px;
+        height: 46px;
+      }
+
+      .episode-card__play::before {
+        border-top-width: 7px;
+        border-bottom-width: 7px;
+        border-left-width: 11px;
+      }
+
+      .episode-card__meta {
+        font-size: 0.58rem;
+        gap: 10px;
+      }
+
+      .episode-card__title {
+        font-size: 0.76rem;
+      }
+
+      .footer {
+        padding: 0 18px 28px;
+      }
+
+      .footer__brand .brand-logo {
+        width: 138px;
+      }
+
+      .footer__headline {
+        font-size: 0.96rem;
+      }
+
+      .footer__brand {
+        margin-bottom: 18px;
+      }
+
+      .footer__subheadline {
+        font-size: 0.66rem;
+        line-height: 1.25;
+      }
+
+      .footer__text,
+      .footer__nav a,
+      .footer__copyright {
+        font-size: 0.52rem;
+      }
+
+      .footer__policies {
+        margin-top: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <video class="hero__video" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true">
+      <source src="video-background.mp4" type="video/mp4" />
+    </video>
+
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <div class="hero__logo" aria-label="TIG Media">
+          <img class="brand-logo" src="MEDIA COLOR 2.png" alt="TIG Media" />
+        </div>
+        <h1 class="hero__title">A.I. Performance<br class="hero__title-break" /> Solution</h1>
+        <p class="hero__subtitle">TIG Media, da oltre 20 anni nel settore del Performance Marketing, a fronte del peggioramento delle performance, ha sviluppato una strategia basata su tre macro argomenti.</p>
+        <div class="hero__preview" aria-label="Anteprima delle tre soluzioni">
+          <article class="hero__preview-card">
+            <div class="hero__preview-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="6"></circle>
+                <path d="M20 20l-4.35-4.35"></path>
+              </svg>
+            </div>
+            <h3 class="hero__preview-title">A.I. Search Audit</h3>
+          </article>
+          <article class="hero__preview-card">
+            <div class="hero__preview-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="7" height="7" rx="1.5"></rect>
+                <rect x="13" y="4" width="7" height="7" rx="1.5"></rect>
+                <rect x="4" y="13" width="7" height="7" rx="1.5"></rect>
+                <rect x="13" y="13" width="7" height="7" rx="1.5"></rect>
+              </svg>
+            </div>
+            <h3 class="hero__preview-title">Multi Content Generation</h3>
+          </article>
+          <article class="hero__preview-card">
+            <div class="hero__preview-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 16l5-5 4 4 7-8"></path>
+                <path d="M20 10v5h-5"></path>
+              </svg>
+            </div>
+            <h3 class="hero__preview-title">Matic Box</h3>
+          </article>
+        </div>
+        <div class="hero__scroll-cue" aria-hidden="true">
+          <span class="hero__scroll-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 13l6 6 6-6"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <aside class="lead-card" id="contact-form" aria-labelledby="lead-form-title">
+        <h2 class="lead-card__title" id="lead-form-title">Richiedi<br />maggiori info</h2>
+        <form class="lead-form">
+          <label class="lead-form__field">
+            <span class="lead-form__label">Nome e Cognome*</span>
+            <input class="lead-form__input" type="text" name="name" />
+          </label>
+          <label class="lead-form__field">
+            <span class="lead-form__label">Email*</span>
+            <input class="lead-form__input" type="email" name="email" />
+          </label>
+          <label class="lead-form__field">
+            <span class="lead-form__label">Nome Azienda*</span>
+            <input class="lead-form__input" type="text" name="company" />
+          </label>
+          <label class="lead-form__field">
+            <span class="lead-form__label">Numero di telefono</span>
+            <input class="lead-form__input" type="tel" name="phone" />
+          </label>
+          <div class="lead-form__consents">
+            <label class="lead-form__consent">
+              <input class="lead-form__checkbox" type="checkbox" name="privacy_policy" />
+              <span>Ho letto e accetto la Privacy Policy ai sensi del Regolamento UE 2016/679.</span>
+            </label>
+            <label class="lead-form__consent">
+              <input class="lead-form__checkbox" type="checkbox" name="marketing_consent" />
+              <span>Acconsento a ricevere comunicazioni informative e commerciali da TIG Media.</span>
+            </label>
+          </div>
+          <button class="lead-form__submit" type="button">Invia richiesta</button>
+        </form>
+      </aside>
+    </div>
+  </header>
+
+  <section class="solutions" aria-labelledby="solutions-title">
+    <div class="container solutions__inner">
+      <canvas class="solutions__fx" id="solutions-particles" aria-hidden="true"></canvas>
+      <div class="solutions__header">
+        <div class="solutions__eyebrow">TIG Media</div>
+        <h2 class="solutions__title" id="solutions-title">AI Performance Solutions</h2>
+        <p class="solutions__intro">Tre soluzioni costruite per riportare controllo, velocità e precisione nelle performance marketing operations.</p>
+      </div>
+
+      <div class="solutions__grid">
+        <article class="solution-card">
+          <div class="solution-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="6"></circle>
+              <path d="M20 20l-4.35-4.35"></path>
+            </svg>
+          </div>
+          <div class="solution-card__body">
+            <h3 class="solution-card__title">A.I. Search Audit</h3>
+            <p class="solution-card__text">Posizionamento vs ricerca A.I.</p>
+          </div>
+        </article>
+
+        <article class="solution-card solution-card--offset">
+          <div class="solution-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="7" height="7" rx="1.5"></rect>
+              <rect x="13" y="4" width="7" height="7" rx="1.5"></rect>
+              <rect x="4" y="13" width="7" height="7" rx="1.5"></rect>
+              <rect x="13" y="13" width="7" height="7" rx="1.5"></rect>
+            </svg>
+          </div>
+          <div class="solution-card__body">
+            <h3 class="solution-card__title">Multi Content Generation</h3>
+            <p class="solution-card__text">Design &amp; Production ADV Assets</p>
+          </div>
+        </article>
+
+        <article class="solution-card solution-card--offset-2">
+          <div class="solution-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 16l5-5 4 4 7-8"></path>
+              <path d="M20 10v5h-5"></path>
+            </svg>
+          </div>
+          <div class="solution-card__body">
+            <h3 class="solution-card__title">Matic Box</h3>
+            <p class="solution-card__text">Media Performance MGMT</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="solutions__cta">
+        <button class="solutions__button" type="button">
+          <span>Contattaci</span>
+          <span class="solutions__button-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="M13 5l7 7-7 7"></path>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+  <section class="episodes" aria-labelledby="episodes-title">
+    <div class="container">
+      <div class="episodes__header">
+        <div class="episodes__header-copy">
+          <h2 class="episodes__title" id="episodes-title">VEDI TUTTI GLI EPISODI</h2>
+          <div class="episodes__channel" aria-label="Web Episode su YouTube">
+            <span class="youtube-badge" aria-hidden="true"></span>
+            <span>Web Episodes</span>
+          </div>
+          <p class="episodes__intro">Una raccolta di contenuti per capire come usare l'AI nel performance marketing, ottimizzare le campagne in tempo reale e trasformare dati e automazioni in lead e vendite.</p>
+        </div>
+        <div class="episodes__actions" aria-label="Controlli carosello episodi">
+          <button class="episodes__nav" type="button" data-carousel-prev aria-label="Scorri agli episodi precedenti">&#10094;</button>
+          <button class="episodes__nav" type="button" data-carousel-next aria-label="Scorri agli episodi successivi">&#10095;</button>
+        </div>
+      </div>
+      <div class="episodes__film">
+        <div class="episodes__film-edge episodes__film-edge--top" aria-hidden="true">
+          <span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span>
+        </div>
+        <div class="episodes__track" id="episodes-carousel">
+          <article class="episode-card">
+            <a class="episode-card__link" href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <div class="episode-card__code">35MM FILM / KODAK 5219</div>
+              <div class="episode-card__media">
+                <img class="episode-card__cover" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1400&q=80" alt="Team in riunione durante una presentazione marketing" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <div class="episode-card__overlay" aria-hidden="true">
+                  <span class="episode-card__play"></span>
+                </div>
+              </div>
+              <div class="episode-card__meta">
+                <span>EP 01 // ORIGINI</span>
+                <span>1A</span>
+              </div>
+              <p class="episode-card__title">Strategie per usare l'AI nei funnel di acquisizione e ridurre il costo per lead con modelli piu efficienti.</p>
+            </a>
+          </article>
+          <article class="episode-card">
+            <a class="episode-card__link" href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <div class="episode-card__code">35MM FILM / KODAK 5219</div>
+              <div class="episode-card__media">
+                <img class="episode-card__cover" src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=1400&q=80" alt="Gruppo di lavoro in brainstorming in ufficio" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <div class="episode-card__overlay" aria-hidden="true">
+                  <span class="episode-card__play"></span>
+                </div>
+              </div>
+              <div class="episode-card__meta">
+                <span>EP 02 // SVILUPPO</span>
+                <span>2</span>
+              </div>
+              <p class="episode-card__title">Approcci concreti per migliorare il ROAS con AI, creativita dinamiche, test automatici e ottimizzazione continua.</p>
+            </a>
+          </article>
+          <article class="episode-card">
+            <a class="episode-card__link" href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <div class="episode-card__code">35MM FILM / KODAK 5219</div>
+              <div class="episode-card__media">
+                <img class="episode-card__cover" src="https://images.unsplash.com/photo-1758873269035-aae0e1fd3422?auto=format&fit=crop&w=1400&q=80" alt="Workshop strategico con team e lavagna" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <div class="episode-card__overlay" aria-hidden="true">
+                  <span class="episode-card__play"></span>
+                </div>
+              </div>
+              <div class="episode-card__meta">
+                <span>EP 03 // VISIONE</span>
+                <span>2A</span>
+              </div>
+              <p class="episode-card__title">Analisi predittiva e lettura delle metriche per prendere decisioni piu rapide sulle campagne attive.</p>
+            </a>
+          </article>
+          <article class="episode-card">
+            <a class="episode-card__link" href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <div class="episode-card__code">35MM FILM / KODAK 5219</div>
+              <div class="episode-card__media">
+                <img class="episode-card__cover" src="https://plus.unsplash.com/premium_photo-1661591484276-1b802009057e?auto=format&fit=crop&w=1400&q=80" alt="Team creativo al lavoro su progetto digitale" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                <div class="episode-card__overlay" aria-hidden="true">
+                  <span class="episode-card__play"></span>
+                </div>
+              </div>
+              <div class="episode-card__meta">
+                <span>EP 04 // CONCLUSIONE</span>
+                <span>3</span>
+              </div>
+              <p class="episode-card__title">Casi pratici su AI, landing page, adv e conversioni per aumentare la qualita dei risultati.</p>
+            </a>
+          </article>
+        </div>
+        <div class="episodes__film-edge episodes__film-edge--bottom" aria-hidden="true">
+          <span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span><span class="episodes__film-hole"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__brand">
+        <img class="brand-logo" src="logo_tigmedia.png" alt="TIG Media" />
+      </div>
+      <h2 class="footer__headline">Siamo TIG - The Innovation Group</h2>
+      <p class="footer__subheadline">Progettiamo, raccontiamo e governiamo il cambiamento.</p>
+      <div class="footer__grid">
+        <div class="footer__group">
+          <a class="footer__link footer__text" href="mailto:info.media@tig.it">info.media@tig.it</a>
+          <a class="footer__link footer__text" href="tel:+3902499881">+39 02.499881</a>
+          <div class="footer__policies" aria-label="Policy links">
+            <a class="footer__link footer__text" href="https://www.theinnovationgroup.it/privacy-policy-2" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            <a class="footer__link footer__text" href="https://www.theinnovationgroup.it/cookie-policy/" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+          </div>
+          <p class="footer__copyright">@ 2026 TIG - The Innovation Group</p>
+        </div>
+        <div class="footer__group">
+          <a class="footer__text footer__link" href="https://www.google.com/maps/search/?api=1&query=Via+Romagnoli+6,+20146+Milano" target="_blank" rel="noopener noreferrer">Via Romagnoli, 6</a>
+          <a class="footer__text footer__link" href="https://www.google.com/maps/search/?api=1&query=Via+Romagnoli+6,+20146+Milano" target="_blank" rel="noopener noreferrer">20146, Milano</a>
+        </div>
+        <nav class="footer__nav" aria-label="Social links">
+          <a href="https://www.instagram.com/tig_media_theinnovationgroup/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.facebook.com/people/TIG-Media/61576162707798/" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://linkedin.com/company/tigmedia2024/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const canvas = document.getElementById("solutions-particles");
+      if (!canvas) {
+        return;
+      }
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        return;
+      }
+
+      const particles = [];
+      const maxParticles = 120;
+      let animationFrameId = null;
+      const ctaButton = document.querySelector(".solutions__button");
+      const ctaButtonIcon = document.querySelector(".solutions__button-icon");
+      const contactForm = document.getElementById("contact-form");
+      const carousel = document.getElementById("episodes-carousel");
+      const prevButton = document.querySelector("[data-carousel-prev]");
+      const nextButton = document.querySelector("[data-carousel-next]");
+      let hoverActive = false;
+
+      const resize = function () {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * window.devicePixelRatio;
+        canvas.height = rect.height * window.devicePixelRatio;
+        ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+      };
+
+      const spawnParticle = function () {
+        if (!ctaButton) {
+          return;
+        }
+
+        const source = ctaButtonIcon || ctaButton;
+        const canvasRect = canvas.getBoundingClientRect();
+        const sourceRect = source.getBoundingClientRect();
+        const originX = sourceRect.left - canvasRect.left + sourceRect.width / 2;
+        const originY = sourceRect.top - canvasRect.top + sourceRect.height / 2;
+
+        particles.push({
+          x: originX + (Math.random() * 36 - 18),
+          y: originY + (Math.random() * 20 - 10),
+          size: Math.random() * 5 + 1.5,
+          alpha: Math.random() * 0.45 + 0.22,
+          vx: Math.random() * 2.8 - 1.4,
+          vy: -(Math.random() * 2.4 + 0.8),
+          life: Math.random() * 55 + 45,
+          maxLife: 100
+        });
+      };
+
+      const animate = function () {
+        ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+
+        if (hoverActive && particles.length < maxParticles) {
+          for (let i = 0; i < 4; i += 1) {
+            spawnParticle();
+          }
+        }
+
+        for (let i = particles.length - 1; i >= 0; i -= 1) {
+          const particle = particles[i];
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+          particle.vx *= 1.01;
+          particle.vy *= 0.995;
+          particle.life -= 1;
+
+          if (particle.life <= 0) {
+            particles.splice(i, 1);
+            continue;
+          }
+
+          const opacity = particle.alpha * (particle.life / particle.maxLife);
+          ctx.fillStyle = "rgba(96, 229, 59, " + opacity.toFixed(3) + ")";
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = "rgba(180, 255, 160, " + (opacity * 0.18).toFixed(3) + ")";
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, particle.size * 1.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        animationFrameId = window.requestAnimationFrame(animate);
+      };
+
+      resize();
+      animate();
+      window.addEventListener("resize", resize);
+
+      if (ctaButton && contactForm) {
+        ctaButton.addEventListener("click", function () {
+          contactForm.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        ctaButton.addEventListener("mouseenter", function () {
+          hoverActive = true;
+        });
+
+        ctaButton.addEventListener("mouseleave", function () {
+          hoverActive = false;
+        });
+
+        ctaButton.addEventListener("focusin", function () {
+          hoverActive = true;
+        });
+
+        ctaButton.addEventListener("focusout", function () {
+          hoverActive = false;
+        });
+      }
+
+      if (carousel && prevButton && nextButton) {
+        const getScrollAmount = function () {
+          const card = carousel.querySelector(".episode-card");
+          if (!card) {
+            return 320;
+          }
+
+          const styles = window.getComputedStyle(carousel);
+          const gap = parseFloat(styles.columnGap || styles.gap || "0");
+          return card.getBoundingClientRect().width + gap;
+        };
+
+        prevButton.addEventListener("click", function () {
+          carousel.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+        });
+
+        nextButton.addEventListener("click", function () {
+          carousel.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
+        });
+      }
+
+      window.addEventListener("beforeunload", function () {
+        if (animationFrameId) {
+          window.cancelAnimationFrame(animationFrameId);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
